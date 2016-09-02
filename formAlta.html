@@ -1,0 +1,104 @@
+<html>
+<head><!-- MVC Modelo, Vista, Controller-->
+	<title>ABM angular PHP</title>
+<!--
+	TRAER 2 FORMULARIOS validarlos con angular
+
+	UN LOGIN 
+		nombre (text)-apellido (text)-edad (number)-sexo (radiobutton)-dni(number)-mail (email)-estado (option)-fec nac (date) - clave (password)- copia clave (password)- lenguaje de progra(check)		
+	Y UN ALTA
+		VALIDAR FECHAS
+
+	-->  
+		<!--?php require_once"partes/referencias.php" ;/**/?-->
+		<!--final de Estilos-->    
+
+      <!--script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script-->
+       	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="http://www.octavio.com.ar/favicon.ico">
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="css/animacion.css">
+
+	<!-- 1) incluyo el script de angular (bower) -->
+	<script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
+	<!--2) Incluyo el archivo js con la aplicacion y los controller -->
+ 	<script SRC="js/app.js" TYPE="text/javascript"></script>
+</head>
+<body ng-app="ABMangularPHP" ng-controller="controlAlta"><!--se linkea con la app, el ng app tiene que tener el mismo nombre que la aplicacion-->
+	<!--?php		
+		require_once"partes/barraDeMenu.php";
+	 ?-->
+
+ 
+              <ul class="nav nav-tabs">
+		         <li  class="btn btn-info animated bounceInLeft" >
+		         	<a href="index.html">
+		         		 <span class="glyphicon glyphicon-list-alt">&nbsp;</span>
+		         		 Inicio
+		         	</a>
+		         </li>
+		         <li class="btn btn-info animated bounceInLeft" >
+		         	<a href="formAlta.html">
+		         		<span class="glyphicon glyphicon-plus-sign">&nbsp;</span>
+		         		Alta
+		         	</a>
+		         </li>
+		         <li  class="btn btn-info animated bounceInLeft" >
+		         	<a href="formGrilla.html"> 
+		         		<span class="glyphicon glyphicon-th" >&nbsp;</span>
+		         			Grilla</a>
+		         		</li>
+		        	<span id="tituloBarra"  class="animated bounceInRight">{{DatoTest}}ABM - PHP - Angular Versión 1.0.1 &nbsp;&nbsp;&nbsp;</span>
+      </ul>
+		
+
+	<div class="container">
+		<div class="page-header">
+			<center> <h1>Datos {{DatoTest}}</h1>   </center>     
+		</div>
+		<div class="CajaInicio animated bounceInRight">
+			<h1> <!--?php echo $titulo; ?-->{{mascota}} </h1>
+			<!--
+			ng-if crea o destruye un controlador
+			ng-show cambia el estilo
+			ng-disabled	muestyra el elemento pero solo lectura
+			-->
+
+			<form id="FormIngreso"  name="FormIngreso" enctype="multipart/form-data" >
+				<input type="checkbox" id=""  ng-model="ver">
+				<span>{{ver}}</span>
+				<input type="text" name="apellido"  ng-model="mascota.raza" placeholder="ingrese raza" value="" required/>
+				<span id="lblApellido" ng-if="ver"  style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*
+				</span>
+				<input type="text" name="nombre" ng-if="ver"  ng-model="mascota.nombre" placeholder="ingrese nombre" value="" required/> <span id="lblNombre" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
+
+				<input  required ng-model="persona.password"  placeholder="Ingrese su Password" type="password"   >					
+				<input  required ng-model="persona.passwordcopia" placeholder="Ingrese su Password" type="password"  >
+
+				<input  type="email" ng-if="ver"  name="correo" ng-model="persona.correo" placeholder="ingrese cumpleaños" value=""  required/> 
+				<span id="lblDni" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
+				<p style='color: black;' ng-if="ver" >*El DNI no se puede modificar.</p> ": "" ; ?><!--el ng-model bindea y actualiza dinamicamente las variables con los valores cargados en los input text-->
+				
+				<input type="hidden" name="idOculto" id="id" value="" />
+				<!--
+				<input type="file" name="foto" />
+
+
+				<img  src="fotos/pordefecto.png" class="fotoform" id="foto"/>
+				<p style="  color: black;">*La foto se actualiza al guardar.</p>
+				
+				-->
+				<!--http://www.w3schools.com/angular/angular_validation.asp-->
+				<a class="btn btn-info " ng-disabled="FormIngreso.$invalid" name="guardar" ng-click="Guardar()" ><span class="glyphicon glyphicon-save">&nbsp;</span>Guardar</a>
+					
+				<input type="hidden" value="" id="idParaModificar" name="agregar" />
+				<input type="hidden" value="" id="hdnAgregar" name="agregar" />
+				</div>
+
+			</form>
+	</div>
+	</div>
+</body>
+</html>
